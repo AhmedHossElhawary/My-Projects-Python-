@@ -24,5 +24,4 @@ else:
     print(f"The coin landed on {flip}.")
 if toss == flip:
     print("Congratulations! You guessed correctly.")
-    print("You win!")
     
