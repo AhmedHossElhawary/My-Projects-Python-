@@ -4,4 +4,4 @@ if me.lower() == "ahmed" or me.lower() == "ahmed hossam" or me.lower() == "hossa
 elif me.lower() == "the prophet mohammed" or me.lower() == "prophet mohammed" or me.lower() == "pbuh":
     print("Respect")
 else:
-    print("Fuck you") 
+    print("You are wrong :(") 
