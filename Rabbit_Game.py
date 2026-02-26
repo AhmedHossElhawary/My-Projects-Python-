@@ -7,8 +7,8 @@ print(f"""Welcome to place the rabbit game🐇
 {row3}
 Where should the rabbit go?🐇
 Enter the position to place the rabbit""")
-row = int(input("Enter the row = "))
-column = int(input("Enter the column = "))
+row = input("Enter the row = ")
+column = input("Enter the column = ")
 while True:
     if row not in [1, 2, 3] or column not in [1, 2, 3]:
         print("Invalid input, please enter a number 1 , 2 or 3 for both row and column")
