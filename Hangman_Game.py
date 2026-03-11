@@ -3,65 +3,65 @@ import random
 def hangman_stages():
     return [  """
             +-------+
-            |
-            |
-            | 
-            |
-            |
+                    |
+                    |
+                    | 
+                    |
+                    |
          ==============
         """,
         """
             +-------+
             |       |
-            |       0
-            | 
-            |
-            |
+            0       |
+                    |       
+                    |
+                    |
          ==============
         """,
         """
             +-------+
             |       |
-            |       0
+            0       |
             |       |
-            |
-            |
+                    |
+                    |
          ==============
         """,
         """
             +-------+
             |       |
-            |       0
-            |      -|
-            |
-            |
+            0       |
+           -|       |
+                    |
+                    |
          ==============
         """,
         """
             +-------+
             |       |
-            |       0
-            |      -|-
-            |
-            |
+            0       |      
+           -|-      |
+                    |
+                    |
          ==============
         """,
         """
             +-------+
             |       |
-            |       0
-            |      -|-
-            |      /
-            |
+            0       |
+           -|-      |
+           /        |
+                    |
          ==============
         """,
         """
             +-------+
             |       |
-            |       0
-            |      -|-
-            |      / \ 
-            |
+            0       |
+           -|-      |
+           / \      |
+                    |
          ==============
         """]
 
@@ -75,32 +75,31 @@ def display_word(word, slice_of_word):
 def play():
     word = random_word()
     slice_of_word = ["_" for _ in range(len(word))]
-    wrong_count = 0
+    lives = 6
     stages = hangman_stages()
-    max_wrong = len(stages) - 1
-    
-    while "_" in slice_of_word and wrong_count < max_wrong:
-        print(stages[wrong_count])
-        print("Word: " + display_word(word, slice_of_word))
-        print(f"Wrong guesses: {wrong_count}/{max_wrong}")
-        guess = input("Guess a letter: ").lower()
+    print("Welcome to Hangman!")
+    print(stages[6 - lives])
+    while lives > 0:
         
+        print(display_word(word, slice_of_word))
+        guess = input("Guess a letter: ").lower()
+        if guess in slice_of_word:
+            print("You've already guessed that letter! Try again.")
+            continue
         if guess in word:
             for i in range(len(word)):
                 if word[i] == guess:
                     slice_of_word[i] = guess
-            print("Correct guess!")
+            print("Good guess! Keep going!")
+            if "_" not in slice_of_word:
+                print(f"Congratulations! You've guessed the word: {word}")
+                break
         else:
-            print("Wrong guess!")
-            wrong_count += 1
-    
-    print(stages[wrong_count])
-    print("Word: " + display_word(word, slice_of_word))
-    
-    if "_" not in slice_of_word:
-        print("Congratulations! You won! The word was: " + word)
+            lives -= 1
+            print(stages[6 - lives])
+            print(f"Wrong guess! You have {lives} lives left.")
     else:
-        print("Game over! You lost! The word was: " + word)
+        print(f"Game Over! The word was: {word}")
 
 while True:
     play()
