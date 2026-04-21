@@ -37,6 +37,9 @@ while True:
         break
     else:   
         Rule = input("Invalid input. Please press Enter to continue or type 'Help' for the rules of the game: ").lower()
+user_wins = 0
+computer_wins = 0
+ties = 0
 while True:
     chose = input("Please choose Rock 'R', Paper 'P', or Scissors 'S': ").lower()
     options = ["rock", "paper", "scissors"]
@@ -66,12 +69,16 @@ while True:
         print(scissors)
     if chose == computer_choice:
         print("It's a tie!")
+        ties += 1
     elif (chose == "rock" and computer_choice == "scissors") or \
          (chose == "scissors" and computer_choice == "paper") or \
          (chose == "paper" and computer_choice == "rock"):
         print("You win!")
+        user_wins += 1
     else:
         print("Computer wins!")
+        computer_wins += 1
+    print(f"\nScoreboard -> You: {user_wins} | Computer: {computer_wins} | Ties: {ties}\n")
     play_again = input("Do you want to play again? (yes/no): ").lower()
     while True:
         if play_again == "no" or play_again == "n":
